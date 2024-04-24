@@ -1,0 +1,16 @@
+// Outside temp
+{"page":0,"id":5,"obj":"label","x":100,"y":0,"h":60,"w":120,"text":"00:00","align":1,"text_color":"#FFFFFF","text_font":32}
+// Garage temp
+{"page":0,"id":6,"obj":"label","x":0,"y":0,"h":60,"w":100,"text":"00.0°C","align":1,"text_color":"#FFFFFF","text_font":32}
+// Time
+{"page":0,"id":1,"obj":"label","x":220,"y":0,"h":60,"w":100,"text":"00.0°C","align":1,"text_color":"#FFFFFF","text_font":32}
+// Garage door
+{"page":1,"id":2,"obj":"btn","x":0,"y":60,"w":159,"h":90,"text":"\uF2D3","radius":5,"text_font":32,"mode":"break","align":1,"border_opa": 0}
+// Gate
+{"page":1,"id":3,"obj":"btn","x":160,"y":60,"w":160,"h":90,"text":"\uF11C","radius":5,"text_font":32,"mode":"break","align":1,"border_opa": 0}
+// Fan
+{"page":1,"id":4,"obj":"btn","x":0,"y":151,"w":320,"h":90,"text":"\uE210","radius":5,"text_font":32,"mode":"break","align":1,"border_opa": 0}
+
+{"page":1,"id":7,"obj":"linemeter","x":0,"y":242,"w":105,"h":90,"radius":5,"value_str":0, "max":24,"line_count": 24,"border_opa": 0}
+{"page":1,"id":8,"obj":"linemeter","x":106,"y":242,"w":105,"h":90,"radius":5,"value_str":0,"max":24,"line_count": 24,"border_opa": 0}
+{"page":1,"id":9,"obj":"linemeter","x":212,"y":242,"w":105,"h":90,"radius":5,"value_str":0,"max":24,"line_count": 24,"border_opa": 0}

@@ -1,0 +1,130 @@
+openhasp:
+  main_door_plate:
+    objects:
+      - obj: "p0b1"  # temperature label on all pages
+        properties:
+          "text": '{{ states("sensor.outside_sensor_temperature") }}°C'
+      - obj: "p0b5"  # time label on all pages
+        properties:
+          "text": '{{ states("sensor.time") }}'
+      - obj: "p1b2"  # garage door button
+        properties:
+          "val": '{{ 1 if states("binary_sensor.garage_door_iaszone") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_iaszone") == "on" else "#5a6173"}}'
+        event:
+          "up":
+            - service: homeassistant.toggle
+              entity_id: "light.garage_door_light"
+      - obj: "p1b3"  # gate button
+        properties:
+          "val": '{{ 1 if states("binary_sensor.gate_switch_iaszone") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.gate_switch_iaszone") == "on" else "#5a6173"}}'
+        event:
+          "up":
+            - service: homeassistant.toggle
+              entity_id: "light.gate_switch_light"
+      - obj: "p1b4"  # security button
+        properties:
+          "bg_color": >
+            {% if is_state('alarm_control_panel.home_alarm', 'disarmed') %}
+            {{ "#5a6173" }}
+            {%-elif is_state('alarm_control_panel.home_alarm', 'arming') %}
+            {{ "#e5eb34" }}
+            {%-elif is_state('alarm_control_panel.home_alarm', 'armed_home') %}
+            {{ "#42a848" }}
+            {%-elif is_state('alarm_control_panel.home_alarm', 'armed_away') %}
+            {{ "#42a848" }}
+            {%-elif is_state('alarm_control_panel.home_alarm', 'triggered') %}
+            {{ "#eb3434" }}
+            {% endif %}
+      - obj: "p2b4"  # arm away
+        event:
+          "up":
+            - service: alarm_control_panel.alarm_arm_away
+              entity_id: "alarm_control_panel.home_alarm"
+      - obj: "p2b5"  # arm home
+        event:
+          "up":
+            - service: alarm_control_panel.alarm_arm_home
+              entity_id: "alarm_control_panel.home_alarm"
+      - obj: "p2b3"  # disarm
+        event:
+          "up":
+            - service: alarm_control_panel.alarm_disarm
+              target:
+                entity_id: "alarm_control_panel.home_alarm"
+              data:
+                code: '{{states("input_text.alarm_code")}}'
+            - service: input_text.set_value
+              target:
+                entity_id: "input_text.alarm_code"
+              data:
+                value: ''
+      - obj: "p2b2"  # keypad
+        properties:
+          "bg_color": >
+            {% if is_state('alarm_control_panel.home_alarm', 'disarmed') %}
+            {{ "#5a6173" }}
+            {%-elif is_state('alarm_control_panel.home_alarm', 'arming') %}
+            {{ "#e5eb34" }}
+            {%-elif is_state('alarm_control_panel.home_alarm', 'armed_home') %}
+            {{ "#42a848" }}
+            {%-elif is_state('alarm_control_panel.home_alarm', 'armed_away') %}
+            {{ "#42a848" }}
+            {%-elif is_state('alarm_control_panel.home_alarm', 'triggered') %}
+            {{ "#eb3434" }}
+            {% endif %}
+        event:
+          "up":
+            - service: input_text.set_value
+              target:
+                entity_id: "input_text.alarm_code"
+              data:
+                value: '{{states("input_text.alarm_code") + text }}'
+  garage_plate:
+    objects:
+      - obj: "p0b1"  # temperature label on all pages
+        properties:
+          "text": '{{ states("sensor.outside_sensor_temperature") }}°C'
+      - obj: "p0b5"  # time label on all pages
+        properties:
+          "text": '{{ states("sensor.time") }}'
+      - obj: "p0b6"  # garage temperature label on all pages
+        properties:
+          "text": '{{ states("sensor.garage_sensor_temperature") }}°C'
+      - obj: "p1b2"  # garage door button
+        properties:
+          "val": '{{ 1 if states("binary_sensor.garage_door_iaszone") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_iaszone") == "on" else "#5a6173"}}'
+        event:
+          "up":
+            - service: homeassistant.toggle
+              entity_id: "light.garage_door_light"
+      - obj: "p1b3"  # gate button
+        properties:
+          "val": '{{ 1 if states("binary_sensor.gate_switch_iaszone") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.gate_switch_iaszone") == "on" else "#5a6173"}}'
+        event:
+          "up":
+            - service: homeassistant.toggle
+              entity_id: "light.gate_switch_light"
+      - obj: "p1b4"  # garage fan button
+        properties:
+          "val": '{{ 1 if states("binary_sensor.garage_door_iaszone") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_iaszone") == "on" else "#5a6173"}}'
+        event:
+          "up":
+            - service: homeassistant.toggle
+              entity_id: "light.garage_door_light"
+      - obj: "p1b7"  # phase a current
+        properties:
+          "val": '{{ states("sensor.main_power_rms_current") }}'
+          "value_str": '{{ states("sensor.main_power_rms_current") }}'
+      - obj: "p1b8"  # phase b current
+        properties:
+          "val": '{{ states("sensor.main_power_rms_current_phase_b") }}'
+          "value_str": '{{ states("sensor.main_power_rms_current_phase_b") }}'
+      - obj: "p1b9"  # phase c current
+        properties:
+          "val": '{{ states("sensor.main_power_rms_current_phase_c") }}'
+          "value_str": '{{ states("sensor.main_power_rms_current_phase_c") }}'
