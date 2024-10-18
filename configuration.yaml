@@ -9,20 +9,20 @@ openhasp:
           "text": '{{ states("sensor.time") }}'
       - obj: "p1b2"  # garage door button
         properties:
-          "val": '{{ 1 if states("binary_sensor.garage_door_iaszone") == "on" else 0 }}'
-          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_iaszone") == "on" else "#5a6173"}}'
+          "val": '{{ 1 if states("binary_sensor.garage_door_garage_door_contact") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_garage_door_contact") == "on" else "#5a6173"}}'
         event:
           "up":
             - service: homeassistant.toggle
-              entity_id: "light.garage_door_light"
+              entity_id: "switch.garage_door_trigger"
       - obj: "p1b3"  # gate button
         properties:
-          "val": '{{ 1 if states("binary_sensor.gate_switch_iaszone") == "on" else 0 }}'
-          "bg_color": '{{ "#42a848" if states("binary_sensor.gate_switch_iaszone") == "on" else "#5a6173"}}'
+          "val": '{{ 1 if states("binary_sensor.gate_garage_door_contact") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.gate_garage_door_contact") == "on" else "#5a6173"}}'
         event:
           "up":
             - service: homeassistant.toggle
-              entity_id: "light.gate_switch_light"
+              entity_id: "switch.gate_trigger"
       - obj: "p1b4"  # security button
         properties:
           "bg_color": >
@@ -94,37 +94,37 @@ openhasp:
           "text": '{{ states("sensor.garage_sensor_temperature") }}°C'
       - obj: "p1b2"  # garage door button
         properties:
-          "val": '{{ 1 if states("binary_sensor.garage_door_iaszone") == "on" else 0 }}'
-          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_iaszone") == "on" else "#5a6173"}}'
+          "val": '{{ 1 if states("binary_sensor.garage_door_garage_door_contact") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_garage_door_contact") == "on" else "#5a6173"}}'
         event:
           "up":
             - service: homeassistant.toggle
-              entity_id: "light.garage_door_light"
+              entity_id: "switch.garage_door_trigger"
       - obj: "p1b3"  # gate button
         properties:
-          "val": '{{ 1 if states("binary_sensor.gate_switch_iaszone") == "on" else 0 }}'
-          "bg_color": '{{ "#42a848" if states("binary_sensor.gate_switch_iaszone") == "on" else "#5a6173"}}'
+          "val": '{{ 1 if states("binary_sensor.gate_garage_door_contact") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.gate_garage_door_contact") == "on" else "#5a6173"}}'
         event:
           "up":
             - service: homeassistant.toggle
-              entity_id: "light.gate_switch_light"
+              entity_id: "switch.gate_trigger"
       - obj: "p1b4"  # garage fan button
         properties:
-          "val": '{{ 1 if states("binary_sensor.garage_door_iaszone") == "on" else 0 }}'
-          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_iaszone") == "on" else "#5a6173"}}'
+          "val": '{{ 1 if states("binary_sensor.garage_door_garage_door_contact") == "on" else 0 }}'
+          "bg_color": '{{ "#42a848" if states("binary_sensor.garage_door_garage_door_contact") == "on" else "#5a6173"}}'
         event:
           "up":
             - service: homeassistant.toggle
-              entity_id: "light.garage_door_light"
+              entity_id: "switch.garage_door_trigger"
       - obj: "p1b7"  # phase a current
         properties:
-          "val": '{{ states("sensor.main_power_rms_current") }}'
-          "value_str": '{{ states("sensor.main_power_rms_current") }}'
+          "val": '{{ states("sensor.main_power_current_x") }}'
+          "value_str": '{{ states("sensor.main_power_current_x") }}'
       - obj: "p1b8"  # phase b current
         properties:
-          "val": '{{ states("sensor.main_power_rms_current_phase_b") }}'
-          "value_str": '{{ states("sensor.main_power_rms_current_phase_b") }}'
+          "val": '{{ states("sensor.main_power_current_y") }}'
+          "value_str": '{{ states("sensor.main_power_current_y") }}'
       - obj: "p1b9"  # phase c current
         properties:
-          "val": '{{ states("sensor.main_power_rms_current_phase_c") }}'
-          "value_str": '{{ states("sensor.main_power_rms_current_phase_c") }}'
+          "val": '{{ states("sensor.main_power_current_z") }}'
+          "value_str": '{{ states("sensor.main_power_current_z") }}'
